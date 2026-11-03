@@ -12,18 +12,13 @@ RUN printf '%s\n' \
     > /etc/apt/sources.list
 
 
-RUN apt-get -q update && apt-get -qy install maven \
-   ant \
-   git \
-   python3-venv
-
-#RUN apt-get -q update && apt-get -qy install \
-#    ca-certificates \
-#    maven \
-#    ant \
-#    git \
-#    python3-venv \
-#    && update-ca-certificates
+RUN apt-get -q update && apt-get -qy install \
+    ca-certificates \
+    maven \
+    ant \
+    git \
+    python3-venv \
+    && update-ca-certificates
 
 RUN id 1000 || useradd -u 1000 -ms /bin/bash build
 COPY --chown=1000:1000 . /bio-formats-build
