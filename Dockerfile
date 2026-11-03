@@ -1,4 +1,4 @@
-ARG BUILD_IMAGE=openjdk:8u322-jdk
+ARG BUILD_IMAGE=eclipse-temurin:8-jdk-jammy
 # Build image
 FROM ${BUILD_IMAGE}
 LABEL maintainer="ome-devel@lists.openmicroscopy.org.uk"
