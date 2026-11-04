@@ -28,8 +28,17 @@ WORKDIR /bio-formats-build
 RUN git submodule update --init
 RUN git submodule foreach -q --recursive 'branch="$(git config -f $toplevel/.gitmodules submodule.$name.branch)"; git switch $branch'
 
+RUN python3 -m pip install "pip @ https://files.pythonhosted.org/packages/3f/06/3e4420302363fbb71be3c7f35ce042f54bfca330e3e66b3a2e3c4cca579f/pip-26.2.2-py3-none-any.whl#sha256=fd7f4dfa8190e014013b9f08f3e973f4e4c26ffd179a204895533a7254813a70"
+RUN python3 -m pip install --upgrade certifi
+
 RUN python3 -m venv /bio-formats-build/venv
+
+RUN  /bio-formats-build/venv/bin/python3 -m pip install "pip @ https://files.pythonhosted.org/packages/3f/06/3e4420302363fbb71be3c7f35ce042f54bfca330e3e66b3a2e3c4cca579f/pip-26.2.2-py3-none-any.whl#sha256=fd7f4dfa8190e014013b9f08f3e973f4e4c26ffd179a204895533a7254813a70"
+RUN /bio-formats-build/venv/bin/python3 -m pip install --upgrade certifi
+
 ENV PATH="/bio-formats-build/venv/bin:$PATH"
+
+
 RUN pip install -r bio-formats-documentation/requirements.txt
 RUN pip install -r ome-model/requirements.txt
 
